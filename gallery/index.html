@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="gallery-wrap">
+        <img src="images/back.png" id="backbtn">
+        <div class="gallery">
+            <div>
+                <span><img src="images/spiderman.avif"></span>
+                <span><img src="images/ironman.jpg"></span>
+                <span><img src="images/doctor strange.jpg"></span>
+            </div>
+            <div>
+                <span><img src="images/captain america.webp"></span>
+                <span><img src="images/hulk.jpg"></span>
+                <span><img src="images/thor.jpg"></span>
+            </div>
+            <div>
+                <span><img src="images/thanos.jpg"></span>
+                <span><img src="images/daredevil.jpg"></span>
+                <span><img src="images/moon knight.jpg"></span>
+            </div>
+            <div>
+                <span><img src="images/wanda.jpg"></span>
+                <span><img src="images/black panther.jpg"></span>
+                <span><img src="images/moon knight.jpg"></span>
+            </div>
+        </div>
+        <img src="images/next.png" id="nextbtn">
+    </div>
+<script>
+    const scrollContainer = document.querySelector(".gallery");
+    const backBtn = document.getElementById('backbtn');
+    const nextBtn = document.getElementById('nextbtn');
+
+    scrollContainer.addEventListener('wheel',(evt)=>{
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY;
+        scrollContainer.style.scrollBehavior = 'auto';
+    })
+
+    backBtn.addEventListener('click',()=>{
+        scrollContainer.style.scrollBehavior = 'smooth';
+        scrollContainer.scrollLeft -= 900;
+    })
+
+    nextBtn.addEventListener('click',()=>{
+        scrollContainer.style.scrollBehavior = 'smooth';
+        scrollContainer.scrollLeft += 900;
+    })
+</script>    
+</body>
+</html>
