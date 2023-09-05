@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h1>Age <span>Calculator</span></h1>
+            <div class="input-box">
+                <input type="date" id="date">
+                <button onclick="calculateAge()">Calculate</button>
+            </div>
+            <p id="result"></p>
+        </div>
+    </div>
+<script>
+    let input = document.getElementById('date');
+    input.max = new Date().toISOString().split("T")[0];
+    let result = document.getElementById('result');
+    function calculateAge(){
+        let DateOfBirth = new Date(input.value);
+        let d1 = DateOfBirth.getDate();
+        let m1 = DateOfBirth.getMonth()+1;
+        let y1 = DateOfBirth.getFullYear();
+
+        let today = new Date();
+        let d2 = today.getDate();
+        let m2 = today.getMonth()+1;
+        let y2 = today.getFullYear();
+
+        let d3,m3,y3;
+
+        //to get years
+        y3 = y2-y1; 
+
+        //to get months
+        if(m2>=m1){   
+            m3 = m2-m1; //get months when current month is greater
+        }
+        else{
+            y3--;  //reduce year by 1
+            m3 = 12 + m2-m1;  //add 12 months to the current month subtracted by Date of month
+        }
+        if(d2>=d1){
+            d3 = d2-d1; //get days when current date is greater
+        }
+        else{
+            m3--;  //reduce month by 1
+            d3 = getDaysInMonth(y1,m1) + d2-d1; //to get no of days
+        }
+        if(m3<0){  //when current month is less than zero
+            m3 = 11; //our current month will be 11
+            y3--;  // year will reduce by 1
+        }
+        result.innerHTML  = `You are <span>${y3}</span> years <span>${m3}</span> months <span>${d3}</span> days Old`;
+    }
+
+    //function to get no of days in a month
+    function getDaysInMonth(year,month){  
+        return new Date(year,month,0).getDate();
+    }
+</script>
+</body>
+
+</html>
